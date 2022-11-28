@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Entrainement JS</title>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <h1>Entrainement Javascript</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, at quaerat excepturi laudantium praesentium unde facere dolorum consequatur libero quo eius ut iure ab voluptas dolores eligendi vel fuga accusantium.</p>
+
+        <!-- Chargement de mon script javascript -->
+        <!-- 2 methodes : chargement d'un fichier js externe à la page
+        <script src="script.js"></script>
+        ou intégration directe d'un javascript au sein du html -->
+        <script>
+
+
+            /*
+                Sommaire :
+                1 - Commentaires
+                2 - Affichage
+                3 - Variables
+                4 - Constantes
+                5 - Concaténation
+                6 - Types de données
+                7 - Opérateur arithmétiques
+                8 - Conditions
+
+            */
+
+
+        /* ********** -- 01 - Commentaires ************ */
+
+            // commentaire de ligne en javascript
+            
+            /*
+                commentaire
+                de 
+                bloc
+                en 
+                javascript
+            */
+           document.write('<h2>1 - Commentaires</h2>');
+           document.write('<p>Voir commentaires dans le script</p>');
+
+            
+
+        /* ********** -- 02 - Affichages ************ */
+
+            document.write('<h2>2 - Affichages</h2>');
+
+            document.write('Mon premier message');
+
+            document.write('<p style="color: grey;">Mon premier paragraphe en javascript</p>');
+
+            // Affichage dans la console
+            console.log('Attention aux erreurs de syntaxe');
+            console.info('Je suis identique à console.log mais avec une petite icone supplémentaire sur certains navigateurs');
+            
+            // boites de dialogue
+            // alert('Ceci est une alerte'); // boite de dialogue + ok
+            // confirm('Etes vous sur ?'); // boite + ok + annuler
+            // prompt('Quel age avez vous ?');// boite + ok + annuler + champ de saisie
+
+            // console.log(prompt('Quel age avez vous ?'));
+
+
+        /* ********** -- 03 - Variables ************ */
+            // DECLARATION / AFFECTATION
+
+            document.write('<h2>3 - Variables</h2>');
+
+        // Une variable est une 'boite virtuelle' dans laquelle nous allons stocker une donnée. Cette donnée peut etre de n'importe quel type comme des chiffres, des mots ou autre (voir chapitre sur le type de données)
+
+        // Declarer une variable
+        // le mot clé var ou let permet de declarer la variable nommé maBoite (declaration = nous creons notre boite virtuelle). 
+        // caractères acceptés : 0 à 9, A à Z, a à z, $ et _. Par convention, $ ne s'utilise pas et jamais de _ en premier ou dernier caractère d'une variable
+        
+        // ici le nom de variable est en camelCase
+        let maBoite;
+
+        // affectation c'est donner une valeur à la variable
+        maBoite = 10; // permet d'afecter la valeur 10 à notre variable maBoite (grace au egal d'affectation)
+        console.log(maBoite);
+        document.write(maBoite);
+
+        // declaration et affectation en une seule instruction
+
+        let maSecondeBoite = '<br>second contenu<br>';
+        document.write(maSecondeBoite);
+
+        // Déclarer une variable maTroisiemeBoite puis dans une instruction suivante lui affecter la valeur 'hello world' enfin ecrire dans le document le contenu de votre variable
+        var maTroisiemeBoite; // declaration
+        maTroisiemeBoite = 'hello world'; // affectation
+        document.write(maTroisiemeBoite); // affichage
+
+        // declarations / affectations multiples
+            let prenom = 'Sylvie', 
+                nom = 'Dupont', 
+                genre = 'Feminin';
+            
+            console.log(prenom);
+
+        // réafecter une nouvelle valeur à une variable
+
+            prenom = 'Pierre';
+            genre= 'masculin';
+            console.log(prenom);
+
+        // on peut affecter à une variable la valeur d'une autre variable
+
+            prenom = nom;
+            console.log(prenom);
+
+        // ajouter une valeur à une variable sans remplacer son contenu
+        var fruits = 'Pomme';
+        console.log(fruits);
+        // += permet d'ajouter des caractères supplémentaires en plus des précédents
+        fruits += ' Fraise';
+        console.log(fruits);
+        fruits += ' poire';
+        console.log(fruits);
+        fruits += ' banane';
+        console.log(fruits);
+
+        // je lance un prompt demandant le prenom de la personne, en affectant la réponse à la variable monPrenom
+        var monPrenom = prompt('Quel est votre prénom?');
+        // je peux ainsi (le prenom est en memoire dans la variable) faire appel ou je veux dans mon script pour retrouver le prénom tapé dans le champ.
+        console.log(monPrenom);
+        document.write(monPrenom);
+
+
+
+        /* ********** -- 04 - Constantes ************ */
+
+            document.write('<h2>4 - Constantes</h2>');
+
+        // la constante est une boite virtuelle dont la valeur NE PEUT PAS ETRE modifiée, autrement dit sa valeur est constante. Par convention, le nom d'une constante est en majuscule
+
+        const NE_BOUGE_PAS = 'Ma constante impossible à modifier';
+
+        console.log(NE_BOUGE_PAS);
+        
+        // affiche une erreur car je ne peux plus modifier une constante affectée
+        //NE_BOUGE_PAS = 'Nouveau contenu';
+
+
+
+        /* ********** -- 05 - Concaténation ************ */
+
+
+        document.write('<h2>5 - Concaténation</h2>');
+
+        var sonPrenom = 'Bruce',
+            sonNom = 'Wayne';
+        
+        // pour concatener on utilise le + de concatenation
+        document.write('<p>' + sonPrenom + ' <strong>' + sonNom + '</strong></p>');
+
+        // Exercice : Utiliser la variable 'monPrenom' dans une document.write(), afin d'ecrire dans la page : 
+        // Bonjour 'monPrenom', bienvenue sur le site ! Le tout dans une balise H5
+        document.write('<h5>Bonjour ' + monPrenom + ' bienvenue sur le site !</h5>');
+
+        /*
+        var sonAge = prompt('Quel age avez vous?');
+        document.write('Vous avez '+ sonAge + ' ans.');
+        */
+
+
+
+        /* ********** -- 06 - Type de données ************ */
+            document.write('<h2>Types de données</h2>');
+
+        // nous voyons les 3 principaux types de données : les primitifs
+
+        // le type chaine de caractère (string)
+        var monTexte = "Voici une chaine de caractère rédigée en double quote";
+
+        var apostrophe = '<p style="color: red;">Utilisation d\'apostrophes dans une chaine en simple quote : utiliser le caractère d\'échappement (\)</p>';
+
+        var numero = '30';
+        console.log(numero);
+
+        // le type numérique (number)
+        var chiffre = 20; // affectation sans simple ni double quote
+        var negatif = -10;
+        var decimal = 9.5;
+        console.log(chiffre);
+
+        // le type booléen (boolean) true ou false
+        var vrai = true;
+        var faux = false;
+        console.log(faux);
+        // console.log(confirm('Voulez vous quitter la page ?'));
+
+        // typeof() est une fonction js permettant de connaitre le type de donnée d'une variable
+        console.log(typeof(apostrophe)); // -> renvoie string
+        console.log(typeof(negatif)); // -> renvoie number
+        console.log(typeof(vrai)); // -> renvoie boolean
+
+
+
+
+
+        /* ********** -- 07 - Opérateur arithmétiques ************ */
+        document.write('<h2>07 - Opérateur arithmétiques</h2>');
+
+        // additions : +
+        var addition = 10 + 5; // -> 15
+        console.log(addition);
+
+        // soustraction : -
+        let soustraction = 20 - 12; // -> 8
+        console.log(soustraction);
+
+        // multiplication : *
+        let multiplication = 5 * 5; // -> 25
+        console.log(multiplication);
+
+        // division : /
+        let division = 30 / 5; // -> 6
+        console.log(division);
+
+        // modulo : %
+        // J'ai dix billes et trois personnes, je donne trois billes à chaque personne: il m'en reste
+        let modulo = 10 % 3; // -> 1
+        console.log(modulo);
+
+        // Priorités de calcul utilisation de la parenthèse pour rendre prioritaire une partie de l'opération
+        var priorite = (2 + 3) * 5; // -> 25
+        console.log(priorite);
+
+        // pratiquer des operations entre variables
+        var chiffre1 = 10,
+            chiffre2 = 5;
+        document.write(chiffre1 * chiffre2); // -> 50
+
+        // utiliser l'operateur dans l'affectation
+        // chiffre1 = chiffre1 + 5;
+        chiffre1 += 5;
+        console.log(chiffre1); // -> 15
+        // fonctionne avec tous les operateurs +, -, *, /, %
+        chiffre1 /= chiffre2;
+        console.log(chiffre1); // -> 3
+
+
+
+        /* ********** -- 08 - Conditions ou  structures conditionnelles ************ */
+        document.write('<h2>08 - Conditions</h2>');
+        
+        var a = 15,
+            b = 20,
+            c = 2,
+            d = 1;
+
+        // condition if / else (si....sinon....)
+
+        // on teste une proposition placée dans la parenthèse, si la réponse est oui (ou vraie ou true) : on execute les instructions dans les accolades du if. Si la proposition renvoie faux (ou false) alors on execute les insructions dans les accolades du else
+        if(c > d){
+            document.write('Je rentre dans le if');
+        }
+        else{
+            document.write('Je rentre dans le else');
+        }
+
+        // on va demander au visiteur son age via un prompt()
+        // en fonction de son age on va ecrire un message sous condition. Si il a moins de 18 ans on ecrira vous etes mineur, sinon on ecrira vous etes majeur.
+
+        var ageVisiteur = prompt('Quel est votre age?');
+        console.log(ageVisiteur);
+
+        if(ageVisiteur < 18){
+            document.write('<p>Vous etes Mineur</p>');
+        }
+        else{
+            document.write('<p>Vous etes majeur</p>');
+        }
+
+        var choix = confirm('Voulez vous quitter la page ?');
+        console.log(choix);
+
+        if(choix){
+            document.write('Au revoir');
+        }
+        else{
+            document.write('Merci de rester finalement');
+        }
+
+        </script>
+    </body>
+</html>
