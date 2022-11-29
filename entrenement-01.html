@@ -28,7 +28,10 @@
                 6 - Types de données
                 7 - Opérateur arithmétiques
                 8 - Conditions
-
+                9 - Opérateurs de comparaison et logiques
+                10 - Boucles
+                11 - Fonctions prédéfinies
+                12 - Fonctions utilisateurs
             */
 
 
@@ -201,7 +204,14 @@
         console.log(typeof(negatif)); // -> renvoie number
         console.log(typeof(vrai)); // -> renvoie boolean
 
+        // certaines fonctions permettent de changer un string en number quand c'est possible exemple parseInt()
 
+            // la variable e est un string
+            var e = '10';
+            console.log(typeof(e));
+            // parseInt() permet de transformer quand c'est possible un string en number
+            e = parseInt(e);
+            console.log(e);
 
 
 
@@ -255,6 +265,7 @@
             b = 20,
             c = 2,
             d = 1;
+        
 
         // condition if / else (si....sinon....)
 
@@ -271,14 +282,28 @@
 
         var ageVisiteur = prompt('Quel est votre age?');
         console.log(ageVisiteur);
+        // typeof() permet de connaitre le type d'une donnée
+        // deslors qu'une donnée est envoyée par prompt elle sera string que ce soit en chiffre ou en lettres
+        console.log(typeof(ageVisiteur));
+        // isNaN teste si la donnée peut etre traduite en number ou non
+        // is Not a Number ? renvoie true si ce n'est pas une valeur numerique
+        // renvoie false si c'est une valeur numérique
+        console.log(isNaN(ageVisiteur));
 
-        if(ageVisiteur < 18){
-            document.write('<p>Vous etes Mineur</p>');
+        if(isNaN(ageVisiteur)){
+            document.write('<p>Veuillez utiliser des valeurs numériques</p>');
         }
         else{
-            document.write('<p>Vous etes majeur</p>');
+            if(ageVisiteur < 18){
+                document.write('<p>Vous etes Mineur</p>');
+            }
+            else{
+                document.write('<p>Vous etes majeur</p>');
+            }
         }
 
+
+        // un confirm me repondra soit true si la personne clique sur OK ou false si la personne clique sur ANNULER
         var choix = confirm('Voulez vous quitter la page ?');
         console.log(choix);
 
@@ -288,6 +313,292 @@
         else{
             document.write('Merci de rester finalement');
         }
+
+        // Condition if...else if....else....
+
+        if(a > 10){
+            document.write('A est supérieur à 10 et inferieur à 30');
+        }
+        else if(b > 5){
+            document.write('B est supérieur à 5');
+        }
+        else if(b > 5){
+            document.write('B est supérieur à 5');
+        }
+        else{
+            document.write('A n\'est pas supérieur à 10 et B n\'est pas supérieur à 5');
+        }
+
+        // condition switch
+/*
+        var couleur = 'bleu';
+
+        switch (couleur){
+            case 'bleu' :
+                document.write('<p>La couleur est le bleu</p>');
+                break;
+            case 'vert' :
+                document.write('<p>La couleur est le vert</p>');
+                break;
+            case 'rouge' :
+                document.write('<p>La couleur est le rouge</p>');
+                break;
+            default :
+                document.write('<p>La couleur n\'est ni le vert, ni le bleu, ni le rouge</p>');
+        }
+*/
+           /*EXO moi:  demander à l'utilisateur sa couleur préférée via un prompt et l'affecter à une variable couleur
+         realiser une condition en if équivalente a la condition switch présente plus haut
+         pour tester l'egalité dans une proposition il faut utiliser ==. le = seul , lui, marque l'affectation de valeur*/
+
+
+        var couleur1 = 'bleu';
+        var couleur2 = 'rouge';
+        var couleurUser = prompt('Quel est votre couleur préférer?');
+
+
+        if(couleurUser == couleur2){
+            document.write('Votre couleur préférer est le rouge');
+        }
+        else if(couleurUser == couleur1){
+            document.write('Votre couleur préférer est le bleu');
+        }
+        else{
+            document.write('Votre couleur préférer est ni le rouge ni le bleu');
+        }  
+
+        // EXO prof
+
+        var couleur = prompt('Quel est votre couleur préférée');
+        console.log(couleur);
+
+        if(couleur != null){
+            couleur = couleur.toLowerCase();
+
+            if(couleur == 'rouge'){
+            document.write('<p>La couleur est le rouge</p>');
+            }
+            else if(couleur == 'bleu'){
+                document.write('<p>La couleur est le bleu</p>');
+            }
+            else if(couleur == 'vert'){
+                document.write('<p>La couleur est le vert</p>');
+            }
+            else{
+                document.write('<p>La couleur n\'est ni le vert, ni le bleu, ni le rouge</p>');
+            }
+        }
+
+        
+        /* ******** -- 09 - Opérateurs de comparaison et logiques ******** */
+        document.write('<h2>09 - Opérateurs</h2>');
+
+        
+
+      /* Nous pouvons utiliser tous les opérateurs de comparaison pour tester des variables entres elles
+      Exemple : var var1 = 3, var2 = 4;
+
+        Égal (==) Renvoi TRUE si les opérandes sont ÉGALES
+                3 == var1 -> TRUE
+                "3" == var1 -> TRUE
+                3 == '3' -> TRUE
+
+        Strictement égal (===) Renvoi TRUE si les opérandes SONT ÉGALES ET du MÊME TYPE
+                3 === var1 -> TRUE
+                "3" === var1 -> FALSE  
+                "3" === 3 -> FALSE    
+                 
+        Différent de (!=) Renvoi TRUE si les opérandes ne sont PAS ÉGALES
+                var1 != 4 -> TRUE
+	            var2 != '3' -> TRUE
+                var1 != 3  -> FALSE 
+
+        Strictement différent (!==) Renvoi TRUE si les opérandes ne sont PAS ÉGALES ET / OU PAS du MÊME TYPE  
+                var1 !== '3' -> TRUE
+                3 !== '3' -> TRUE
+
+        Strictement superieur (>) Renvoi TRUE si l'opérande de GAUCHE EST PLUS GRANDE que l'opérande de droite
+                "12" > 2 -> TRUE
+                var2 > var1 -> TRUE
+
+        Superieur ou égal (>=) Renvoi TRUE si l'opérande de GAUCHE EST PLUS GRANDE OU ÉGALE à l'opérande de droite
+                var2 >= var1 -> TRUE
+	            var1 >= 3 -> TRUE
+
+        Strictement inférieur (<) Renvoi TRUE si l'opérande de GAUCHE EST PLUS PETITE que l'opérande de droite 
+            var1 < var2 -> TRUE
+            12 < var2 -> FALSE
+            
+        Inférieur ou égal (<=) Renvoi TRUE si l'opérande de GAUCHE EST PLUS PETITE OU ÉGALE à l'opérande de droite
+            var1 <= var2 -> TRUE
+            var2 <= 5 -> TRUE
+
+        
+        JavaScript compte 3 opérateurs logiques : 
+		- AND équ. && 
+		- OR équ. || 
+		- NOT équ. !
+
+
+        L'opérateur AND :
+		Il sécrit && . Il evalue le resultat en TRUE si les 2 expressions sont TRUE . Si lune des deux expressions testées est FALSE alors le resultat sera FALSE . 
+		    true && true // => true
+		    true && false // => false
+		    false && true // => false
+		    false && false // => false
+
+        L'opérateur OR :
+		Il sécrit || . Il évalue le résultat en TRUE si une ou lautre ou les 2 expressions sont TRUE . Si les 2 expressions sont FALSE alors le resultat sera FALSE . 
+		    true || true // => true
+		    true || false // => true 
+		    false || true // => true
+		    false || false // => false
+
+        L'opérateur NOT : 
+		Il sécrit ! . Il transforme l'expression evaluée TRUE en FALSE et vice versa. 
+		    !true // => false
+		    !false // => true
+      */
+
+        var legume = false;
+
+        if(!legume){
+            document.write('J\'aime pas les legumes');
+        }
+
+         /* ******** -- 10 - Boucles, structure itératives ******** */
+         document.write('<h2>10 - Boucles</h2>');
+
+/*
+Nous appelons structure itérative (ou récursive), la structure qui permet d'exécuter plusieurs fois les mêmes instructions. Elle permet de faire "en boucle" un bloc d'instructions. 
+En Javascript comme dans tous les langages de programmation. Nous utilisons les boucles. 
+Ce sont des instructions de code qui se répètent tant que la condition est respectée. Exemple, je veux écrire tous les nombres de 1 à 99.Au lieu de tous les écrire à la main, je vais demander à l’ordinateur de le faire pour moi en lui disant « Tant que mon chiffre est inférieur à 99, écris-le et ajoute lui 1 »
+*/
+
+// Boucle While // tant que
+
+var i = 0; // on initialise une variable à 0 (compteur de tour de boucle)
+
+while(i <= 5){
+    document.write(i + '---');
+    // incrementation de 1 sur la variable i
+    i++; // equivaut à  i = i + 1
+}
+// on peut egalement décrementer en utilisant i--;
+
+        document.write('<br>');
+
+// Boucle for
+
+        // initialisation du compteur / proposition à etudier / incrementation dans une meme parenthèse
+
+    //EXO  
+        var nombreDeTours = 8;
+        for(var k = 0; k <= nombreDeTours; k++){
+            
+            // utiliser une condition pour eviter les tirets sur la derniere valeur de k
+            if(k == nombreDeTours){
+                document.write(k + '<br>');
+            }
+            else{
+                document.write(k + '---');
+            }
+        }
+
+    // EXO: Boucle For
+        for(var k = 0;  k<= 5; k++){
+        if(k<5){
+          document.write(k + '--');
+        }
+        else{
+          document.write(k);
+        }
+    }   
+// do...while....
+
+        // cette boucle a pour specificité le fait d'executer quoiqu'il arrive une fois les instructions dans le do, meme si la proposition dans les parentheses du while me renvoient false
+
+        var l = 0;
+        do{
+            document.write(l + '---------');
+            l++;
+        }
+        while(l > 5);
+
+        //EXO: for + do while
+
+        for(var k = 0;  k<= 5; k++){
+        if(k<5){
+          document.write(k + '--');
+        }
+        else{
+          document.write(k);
+        }
+       
+            // do...while....
+
+        var l = 0;
+        do{
+            document.write(l + '---------');
+            l++;
+        }
+        while(l > 5);
+    }
+
+/* ******** -- 11 - Fonctions Prédéfinies  ******** */
+document.write('<h2>11 - Fonctions Prédéfinies</h2>');
+
+// Comme dans tous les langages de programmation, le JS possède des fonctions. Ce sont des morceaux de codes encapsulés qu'on appelle au besoin pour éxécuter une action précise. On distingue les fonctions prédéfinies et les fonctions utilisateurs
+
+// quelques fonctions pour les string : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/String#
+
+// quelques fonctions pour les number : https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Number#
+
+var recherche = 'Bonjour je m\'appelle Eddy';
+console.log(recherche.indexOf('Eddy'));
+
+var monNumber = '3.14';
+console.log(parseInt(monNumber)); // transforme en number entier : -> 3
+console.log(parseFloat(monNumber)); // transforme en number decimal : -> 3.14
+
+// exemple de pense bete js en ligne : https://htmlcheatsheet.com/js/
+
+
+
+/* ******** -- 12 - Fonctions Utilisateur  ******** */
+document.write('<h2>12 - Fonctions Utilisateur</h2>');
+
+// "Don't Repeat Yourself DRY" (philosophie informatique pour éviter la redondance d'actions. À chaque fois quon répete une action, voir s'il n'est pas possible d'y mettre une fonction). Nous avons donc la possibilité de créer nos propres fonctions avec nos propres paramètres
+
+
+// creation de fonction par FUNCTION STATEMENT (déclaration de fonction)
+
+function maFonction(){
+    // instructions executées automatiquement quand je ferai appel a cette fonction
+    document.write('<p>Nous avons une belle journée ensoleillée.</p>');
+}
+// j'appelle ma fonction elle va donc s'executer :
+maFonction();
+
+
+// Par FUNCTION OPERATOR (operateur de fonction) : il faut creer la fonction avant de faire appel a elle ave cette pratique
+
+var maFonction2 = function(){
+    document.write('<p>Nous avons une journée pluvieuse.</p>');
+};
+
+maFonction2();
+
+
+// fonction avec argument
+function direBonjour(visiteur){
+    document.write('<p>Bonjour ' + visiteur + '</p>' );
+}
+direBonjour('Marie');
+
+var monAmi = 'Karim'
+direBonjour(monAmi);
+
 
         </script>
     </body>
